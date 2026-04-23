@@ -48,9 +48,10 @@ Each directory contains:
 
 1. Clone the repository:
 2. git clone https://github.com/unbreakableprogrammist/Programowanie-w-CSharp.git
-3. 2. Open the project in:
-- Visual Studio **or**
+3.  Open the project in:
 - Visual Studio Code
+- CLion
+- Or anything other than Visual Studio
 
 3. Build and run selected projects.
 
