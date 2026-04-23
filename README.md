@@ -59,7 +59,7 @@ Each directory contains:
 
 - C#
 - .NET
-- Visual Studio / VS Code
+- Rider / VS Code
 
 ## 🎯 Purpose of This Repository
 
