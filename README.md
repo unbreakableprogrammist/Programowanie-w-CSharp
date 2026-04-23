@@ -35,3 +35,48 @@ These concepts are fundamental in C# and modern software development  [oai_citat
 The code is organized into folders corresponding to laboratory exercises.
 
 Typical structure:
+Lab01/
+Lab02/
+…
+LabXX/
+Each directory contains:
+- Source code
+- Task implementations
+- Sometimes additional notes or experiments
+
+## 🚀 How to Run
+
+1. Clone the repository:
+2. git clone https://github.com/unbreakableprogrammist/Programowanie-w-CSharp.git
+3. 2. Open the project in:
+- Visual Studio **or**
+- Visual Studio Code
+
+3. Build and run selected projects.
+
+## 🛠️ Technologies
+
+- C#
+- .NET
+- Visual Studio / VS Code
+
+## 🎯 Purpose of This Repository
+
+This repository serves as:
+
+- A learning archive
+- A reference for core C# concepts
+- A portfolio demonstrating practical programming skills
+
+## ⚠️ Disclaimer
+
+The code was written for educational purposes and may not always follow production-level best practices.
+
+## 👨‍🎓 Author
+
+Created by a student of **Warsaw University of Technology**  
+as part of the *Programowanie 3* course.
+
+---
+
+⭐ If you find this repository useful, feel free to star it!
