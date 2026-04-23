@@ -1,0 +1,95 @@
+{
+  "version": 3,
+  "targets": {
+    "net10.0": {
+      "SharpArgs/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/SharpArgs.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SharpArgs.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SharpArgs/1.0.0": {
+      "type": "project",
+      "path": "../SharpArgs/SharpArgs.csproj",
+      "msbuildProject": "../SharpArgs/SharpArgs.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net10.0": [
+      "SharpArgs >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "/Users/krzysztof/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/Users/krzysztof/Documents/lab_puntkowane_9/P3Z-25Z-Task4/SharpArgs/SharpArgs.Console/SharpArgs.Console.csproj",
+      "projectName": "SharpArgs.Console",
+      "projectPath": "/Users/krzysztof/Documents/lab_puntkowane_9/P3Z-25Z-Task4/SharpArgs/SharpArgs.Console/SharpArgs.Console.csproj",
+      "packagesPath": "/Users/krzysztof/.nuget/packages/",
+      "outputPath": "/Users/krzysztof/Documents/lab_puntkowane_9/P3Z-25Z-Task4/SharpArgs/SharpArgs.Console/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/Users/krzysztof/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net10.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net10.0": {
+          "targetAlias": "net10.0",
+          "projectReferences": {
+            "/Users/krzysztof/Documents/lab_puntkowane_9/P3Z-25Z-Task4/SharpArgs/SharpArgs/SharpArgs.csproj": {
+              "projectPath": "/Users/krzysztof/Documents/lab_puntkowane_9/P3Z-25Z-Task4/SharpArgs/SharpArgs/SharpArgs.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "all"
+      },
+      "SdkAnalysisLevel": "10.0.100"
+    },
+    "frameworks": {
+      "net10.0": {
+        "targetAlias": "net10.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/Users/krzysztof/.dotnet/sdk/10.0.100/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

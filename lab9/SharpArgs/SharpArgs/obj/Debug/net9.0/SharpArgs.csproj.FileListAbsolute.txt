@@ -1,0 +1,12 @@
+/Users/krzysztof/Documents/lab_puntkowane_9/P3Z-25Z-Task4/SharpArgs/SharpArgs/bin/Debug/net9.0/SharpArgs.deps.json
+/Users/krzysztof/Documents/lab_puntkowane_9/P3Z-25Z-Task4/SharpArgs/SharpArgs/bin/Debug/net9.0/SharpArgs.dll
+/Users/krzysztof/Documents/lab_puntkowane_9/P3Z-25Z-Task4/SharpArgs/SharpArgs/bin/Debug/net9.0/SharpArgs.pdb
+/Users/krzysztof/Documents/lab_puntkowane_9/P3Z-25Z-Task4/SharpArgs/SharpArgs/obj/Debug/net9.0/SharpArgs.GeneratedMSBuildEditorConfig.editorconfig
+/Users/krzysztof/Documents/lab_puntkowane_9/P3Z-25Z-Task4/SharpArgs/SharpArgs/obj/Debug/net9.0/SharpArgs.AssemblyInfoInputs.cache
+/Users/krzysztof/Documents/lab_puntkowane_9/P3Z-25Z-Task4/SharpArgs/SharpArgs/obj/Debug/net9.0/SharpArgs.AssemblyInfo.cs
+/Users/krzysztof/Documents/lab_puntkowane_9/P3Z-25Z-Task4/SharpArgs/SharpArgs/obj/Debug/net9.0/SharpArgs.csproj.CoreCompileInputs.cache
+/Users/krzysztof/Documents/lab_puntkowane_9/P3Z-25Z-Task4/SharpArgs/SharpArgs/obj/Debug/net9.0/SharpArgs.sourcelink.json
+/Users/krzysztof/Documents/lab_puntkowane_9/P3Z-25Z-Task4/SharpArgs/SharpArgs/obj/Debug/net9.0/SharpArgs.dll
+/Users/krzysztof/Documents/lab_puntkowane_9/P3Z-25Z-Task4/SharpArgs/SharpArgs/obj/Debug/net9.0/refint/SharpArgs.dll
+/Users/krzysztof/Documents/lab_puntkowane_9/P3Z-25Z-Task4/SharpArgs/SharpArgs/obj/Debug/net9.0/SharpArgs.pdb
+/Users/krzysztof/Documents/lab_puntkowane_9/P3Z-25Z-Task4/SharpArgs/SharpArgs/obj/Debug/net9.0/ref/SharpArgs.dll

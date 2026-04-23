@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("File_system_watcher")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+12761531bec65f668be1ca2777f58d7c9696843d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+220051fb03bd753dac4ccdff9c16961c101f96ee")]
 [assembly: System.Reflection.AssemblyProductAttribute("File_system_watcher")]
 [assembly: System.Reflection.AssemblyTitleAttribute("File_system_watcher")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

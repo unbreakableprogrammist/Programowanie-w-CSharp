@@ -1,0 +1,12 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=acff60ac_002Df28d_002D4515_002D935c_002D62ad6aa50277/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="SharpOptionsTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::3AA3A0A9-F181-4071-A0D6-6CC2002FF675::net9.0::SharpArgs.Tests.SharpOptionsTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c1c299a2_002D2b3d_002D4d56_002D9ac5_002D07877f7732da/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="SharpOptionsTests #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::3AA3A0A9-F181-4071-A0D6-6CC2002FF675::net10.0::SharpArgs.Tests.SharpOptionsTests&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::3AA3A0A9-F181-4071-A0D6-6CC2002FF675::net10.0::SharpArgs.Tests.SharpParserTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
