@@ -1,34 +1,7 @@
 ﻿namespace tasks;
 
-// Zbiór metod rozszerzających LINQ dla IEnumerable<T>.
-// Każda metoda działa leniwie (yield) - elementy są przetwarzane dopiero gdy ktoś je pobiera.
 public static class EnumerableExtensions
 {
-    // -----------------------------------------------------------
-    // FOLD (ogólna redukcja sekwencji)
-    // -----------------------------------------------------------
-    // Cel:
-    //  - przejść po całej sekwencji
-    //  - utrzymywać "akumulator" (stan, który pamięta poprzednie kroki)
-    //  - na końcu przekształcić stan w końcowy wynik
-    //
-    // To odpowiednik Aggregate, ale bardziej ogólny.
-    /// <summary>
-    /// Uogólniona redukcja (fold) sekwencji.
-    /// Akumuluje stan za pomocą `func` dla każdego elementu, a następnie przekształca stan
-    /// na wynik końcowy za pomocą `resultSelector`.
-    /// </summary>
-    /// <typeparam name="TSource">Typ elementów</typeparam>
-    /// <typeparam name="TAccumulate">Typ stanu akumulatora</typeparam>
-    /// <typeparam name="TResult">Typ wyniku</typeparam>
-    /// <param name="source">Sekwencja wejściowa</param>
-    /// <param name="seed">Wartość początkowa akumulatora</param>
-    /// <param name="func">Funkcja aktualizująca akumulator dla kolejnego elementu</param>
-    /// <param name="resultSelector">Projekcja końcowego wyniku ze stanu akumulatora</param>
-    /// <returns>Wynik końcowy po przetworzeniu całej sekwencji</returns>
-    /// <remarks>
-    /// Podobne do LINQ `Aggregate`, ale pozwala na projekcję akumulatora do innego typu wyniku.
-    /// </remarks>
     public static TResult Fold<TSource, TAccumulate, TResult>(
         this IEnumerable<TSource> source,
         TAccumulate seed,                              // wartość startowa akumulatora
@@ -37,8 +10,8 @@ public static class EnumerableExtensions
     {
         var acc = seed; // stan początkowy
 
-        using var enumerator = source.GetEnumerator(); // jawny enumerator // pobieramy jawny enumerator sekwencji
-        while (enumerator.MoveNext())                  // iteracja krok po kroku // przechodzimy po elementach krok po kroku
+        using var enumerator = source.GetEnumerator(); // jawny enumerator
+        while (enumerator.MoveNext())                  // iteracja krok po kroku
         {
             acc = func(acc, enumerator.Current);       // aktualizujemy stan na podstawie elementu
         }
@@ -46,21 +19,6 @@ public static class EnumerableExtensions
         return resultSelector(acc); // przekształcamy stan na wynik
     }
 
-    // -----------------------------------------------------------
-    // BATCH
-    // -----------------------------------------------------------
-    // Dzielimy sekwencję na porcje o zadanym rozmiarze.
-    // Przykład: batch size = 3
-    // [1,2,3,4,5,6,7] => [1,2,3], [4,5,6], [7]
-    /// <summary>
-    /// Dzieli sekwencję wejściową na kolejne porcje o podanym rozmiarze.
-    /// Ostatnia porcja może być mniejsza, jeśli zabraknie elementów.
-    /// </summary>
-    /// <typeparam name="T">Typ elementów</typeparam>
-    /// <param name="collection">Sekwencja wejściowa</param>
-    /// <param name="size">Rozmiar porcji (musi być &gt;= 1)</param>
-    /// <returns>Sekwencja porcji (każda jako `IEnumerable&lt;T&gt;`)</returns>
-    /// <exception cref="ArgumentOutOfRangeException">Gdy `size` &lt; 1</exception>
     public static IEnumerable<IEnumerable<T>> Batch<T>(
         this IEnumerable<T> collection,
         int size)
@@ -70,7 +28,7 @@ public static class EnumerableExtensions
 
         using var enumerator = collection.GetEnumerator(); // pobieramy jawny enumerator sekwencji
 
-        while (enumerator.MoveNext()) // każdy batch zaczyna się od aktualnego elementu // przechodzimy po elementach krok po kroku
+        while (enumerator.MoveNext()) // każdy batch zaczyna się od aktualnego elementu
         {
             var batch = new List<T>(capacity: size)
             {
@@ -87,21 +45,6 @@ public static class EnumerableExtensions
         }
     }
 
-    // -----------------------------------------------------------
-    // SLIDING WINDOW (okno przesuwne)
-    // -----------------------------------------------------------
-    // Zamiast brać elementy porcjami bez powrotu, okno przesuwa się po jednym elemencie:
-    // Example, size=3:
-    // [1,2,3,4,5] => [1,2,3], [2,3,4], [3,4,5]
-    /// <summary>
-    /// Tworzy nakładające się okna o stałym rozmiarze z sekwencji wejściowej.
-    /// Każde kolejne okno przesuwa się o jeden element.
-    /// </summary>
-    /// <typeparam name="T">Typ elementów</typeparam>
-    /// <param name="collection">Sekwencja wejściowa</param>
-    /// <param name="size">Rozmiar okna (musi być &gt;= 1)</param>
-    /// <returns>Sekwencja okien (każde jako tablica `T[]` o długości `size`)</returns>
-    /// <exception cref="ArgumentException">Gdy `size` &lt; 1</exception>
     public static IEnumerable<T[]> SlidingWindow<T>(
         this IEnumerable<T> collection,
         int size)
@@ -124,15 +67,6 @@ public static class EnumerableExtensions
         }
     }
 
-    // -----------------------------------------------------------
-    // Wykrywanie rosnących sum okien (5→2→porównanie sum)
-    // -----------------------------------------------------------
-    /// <summary>
-    /// Znajduje okna przesuwne (rozmiar 5), których suma rośnie względem poprzedniego okna.
-    /// Zwraca drugie okno w każdej parze rosnącej.
-    /// </summary>
-    /// <param name="sequence">Wejściowa sekwencja liczb całkowitych</param>
-    /// <returns>Sekwencja okien (`IEnumerable&lt;int&gt;`) o rosnącej sumie</returns>
     public static IEnumerable<IEnumerable<int>> FindSlidingWindowsWithRisingSum(this IEnumerable<int> sequence)
     {
         return sequence
@@ -143,14 +77,6 @@ public static class EnumerableExtensions
             .Select(w => w[1].Window);                // zwracamy to drugie, "większe"
     }
 
-    // -----------------------------------------------------------
-    // Szukanie okien 4-elementowych, które mają duplikaty
-    // -----------------------------------------------------------
-    /// <summary>
-    /// Znajduje wszystkie okna przesuwne (rozmiar 4), które zawierają duplikaty wartości.
-    /// </summary>
-    /// <param name="sequence">Wejściowa sekwencja liczb całkowitych</param>
-    /// <returns>Sekwencja okien 4‑elementowych zawierających duplikaty</returns>
     public static IEnumerable<IEnumerable<int>> FindSlidingWindowsWithDuplicates(this IEnumerable<int> sequence)
     {
         return sequence
@@ -158,15 +84,6 @@ public static class EnumerableExtensions
             .Where(window => window.Distinct().Count() < window.Length); // jeśli mniej unikalnych niż elementów → są duplikaty
     }
 
-    // -----------------------------------------------------------
-    // Najczęstsze trigramy (ciągi 3 liter)
-    // -----------------------------------------------------------
-    /// <summary>
-    /// Znajduje najczęstsze trigramy (ciągi 3 liter) w tekście.
-    /// Uwzględnia tylko litery, bez rozróżniania wielkości.
-    /// </summary>
-    /// <param name="text">Tekst wejściowy</param>
-    /// <returns>Sekwencja najczęstszych trigramów (napisy)</returns>
     public static IEnumerable<string> FindMostCommonTrigrams(this string text)
     {
         if (string.IsNullOrWhiteSpace(text) || text.Length < 3)
@@ -187,15 +104,6 @@ public static class EnumerableExtensions
             .Select(group => group.Trigram);
     }
 
-    // -----------------------------------------------------------
-    // Najdłuższy ciąg powtarzających się wartości
-    // -----------------------------------------------------------
-    /// <summary>
-    /// Znajduje najdłuższy spójny fragment identycznych wartości.
-    /// Zwraca indeks początkowy, końcowy oraz wartość ciągu.
-    /// </summary>
-    /// <param name="sequence">Wejściowa sekwencja liczb całkowitych</param>
-    /// <returns>Krotka: (start, end, value)</returns>
     public static (int start, int end, int value) LongestSequence(this IEnumerable<int> sequence)
     {
         return sequence.Fold(
@@ -234,15 +142,6 @@ public static class EnumerableExtensions
         );
     }
 
-    // -----------------------------------------------------------
-    // Statystyki: min, max, średnia, odchylenie std.
-    // -----------------------------------------------------------
-    /// <summary>
-    /// Oblicza statystyki: minimum, maksimum, średnią i odchylenie standardowe dla sekwencji.
-    /// </summary>
-    /// <param name="source">Wejściowa sekwencja liczb całkowitych</param>
-    /// <returns>Krotka: (min, max, average, standardDeviation)</returns>
-    /// <exception cref="ArgumentException">Gdy sekwencja jest pusta lub null</exception>
     public static (int min, int max, double average, double standardDeviation) ComputeStatistics(this IEnumerable<int> source)
     {
         if (source == null || !source.Any())

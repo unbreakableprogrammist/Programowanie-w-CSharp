@@ -390,18 +390,16 @@
         //indeksator : 
         class Sentence
         {
-            private string[] Words { get; } // prywatna właściwość przechowująca tablicę słów
-            // (zwraca całą tablicę, ale tylko wewnątrz klasy)
+            private string[] Words { get; }
 
-            public string this[int i] // indeksator — pozwala odczytywać i zmieniać
-                // pojedyncze słowa przez indeks (np. s[0], s[1])
+            public string this[int i]
             {
                 get => Words[i];
                 set { Words[i] = value; }
             }
 
-            public Sentence(string sentence) // konstruktor — dostaje całe zdanie
-                => Words = sentence.Split(' '); // rozbija je na tablicę słów i zapisuje do Words
+            public Sentence(string sentence)
+                => Words = sentence.Split(' ');
         }
 
         // dziedziczeni dziala tak jak w cpp : 
@@ -431,104 +429,54 @@
 
          */
 
-        // ------------------------------
-        // KLASA BAZOWA: Vehicle (pojazd)
-        // ------------------------------
-
         public class Vehicle
         {
-            // Właściwość Position — aktualna pozycja pojazdu (np. na drodze).
-            // get -> każdy może odczytać pozycję.
-            // protected set -> tylko ta klasa i klasy dziedziczące mogą ją zmieniać.
-            // = 0 -> początkowa wartość (pojazd startuje z pozycji 0).
             public float Position { get; protected set; } = 0;
 
-            // Właściwość Speed — aktualna prędkość pojazdu.
-            // virtual -> można ją nadpisać w klasie pochodnej.
-            // protected set -> zmieniać mogą tylko Vehicle i klasy dziedziczące.
-            // = 1.0 -> domyślna prędkość 1 jednostka/s.
             public virtual float Speed { get; protected set; } = 1.0f;
 
-            // Właściwość Name — nazwa pojazdu.
-            // get bez set -> wartość ustawiana tylko w konstruktorze.
             public string Name { get; }
 
-            // Konstruktor Vehicle — przyjmuje nazwę pojazdu.
-            // Strzałka => to tzw. expression-bodied constructor (krótki zapis).
             public Vehicle(string name) => Name = name;
 
-            // Wirtualna metoda Run — symuluje ruch pojazdu przez czas dt (delta time).
-            // virtual -> może być nadpisana w klasach pochodnych (np. Car, Bike).
             public virtual float Run(float dt)
             {
-                // Wypisuje komunikat, żeby było widać, że wywołano Vehicle.Run().
                 Console.WriteLine($"Vehicle.Run({dt})");
 
-                // Aktualizuje pozycję: nowa pozycja = stara pozycja + czas * prędkość.
-                // Zwraca zaktualizowaną pozycję.
                 return (Position = Position + dt * Speed);
             }
         }
-        // ------------------------------
-        // KLASA POCHODNA: Car (samochód)
-        // ------------------------------
 
         public class Car : Vehicle
         {
-            // Nadpisujemy właściwość Speed (prędkość) z klasy bazowej.
-            // override -> oznacza, że to wersja "samochodowa".
-            // protected set -> tylko Car (lub klasy dziedziczące po Car) mogą ją zmieniać.
-            // = 0.0f -> samochód startuje od zera (stoi).
             public override float Speed { get; protected set; } = 0.0f;
 
-            // Właściwość Acceleration (przyspieszenie) — jak szybko samochód przyspiesza.
-            // virtual -> można ją nadpisać w klasie pochodnej (np. ElectricCar).
-            // get tylko do odczytu — ustalana w konstruktorze.
             public virtual float Acceleration { get; }
 
-            // Konstruktor Car — przekazuje nazwę do klasy bazowej Vehicle
-            // i ustawia wartość przyspieszenia.
-            // base(name) -> wywołanie konstruktora Vehicle(name)
             public Car(string name, float acceleration) : base(name) => Acceleration = acceleration;
 
-            // Nadpisujemy metodę Run z klasy Vehicle.
-            // Ta wersja dodaje przyspieszenie (czyli zmienia prędkość w czasie).
             public override float Run(float dt)
             {
-                // Dla testów wypisuje, że wywołano Car.Run().
                 Console.WriteLine($"Car.Run({dt})");
 
-                // Aktualizuje pozycję na podstawie prędkości.
                 Position += dt * Speed;
 
-                // Następnie zwiększa prędkość zgodnie z przyspieszeniem.
                 Speed += dt * Acceleration;
 
-                // Zwraca nową pozycję po aktualizacji.
                 return Position;
             }
         }
-        // ------------------------------
-        // KLASA POCHODNA: Bike (rower)
-        // ------------------------------
 
         public class Bike : Vehicle
         {
-            // Konstruktor Bike — wywołuje konstruktor Vehicle.
             public Bike(string name) : base(name)
             {
             }
 
-            // Nadpisanie metody Run.
-            // W tej wersji rower nie ma własnej logiki ruchu,
-            // ale wypisuje komunikat i korzysta z implementacji klasy bazowej.
             public override float Run(float dt)
             {
-                // Wypisanie informacji o wywołaniu Bike.Run().
                 Console.WriteLine($"Bike.Run({dt})");
 
-                // Wywołanie metody bazowej (czyli Vehicle.Run()).
-                // Dzięki temu rower zachowuje się jak "domyślny pojazd".
                 return base.Run(dt);
             }
         }
